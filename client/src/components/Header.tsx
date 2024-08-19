@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTasks } from "../utils/taskContext";
-import { CiFilter } from "react-icons/ci";
+
 import { FiFilter } from "react-icons/fi";
 
 const Header: React.FC = () => {
