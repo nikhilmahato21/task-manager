@@ -1,9 +1,9 @@
 import axios from "axios";
 import { LoaderFunction, redirect, useLoaderData } from "react-router-dom";
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 export const loader: LoaderFunction = async ({ params }) => {
   try {
-    const { data } = await axios.get(`/tasks/${params.id}`);
+    const { data } = await axios.get(`${apiUrl}/${params.id}`);
     console.log(data);
 
     return data;
