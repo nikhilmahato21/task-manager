@@ -7,6 +7,8 @@ import {
 import axios from "axios";
 import { redirect } from "react-router-dom";
 import { BsPencilSquare } from "react-icons/bs";
+import toast from "react-hot-toast";
+import { useTasks } from "../utils/taskContext";
 
 export const loader: LoaderFunction = async ({ params }) => {
   try {
@@ -27,7 +29,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 
   try {
     await axios.put(`/tasks/${params.id}`, data);
-
+    toast.success("Task Updated! ");
     return redirect("/");
   } catch (error) {
     return error;
@@ -35,7 +37,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
 };
 const EditTask = () => {
   const task: any = useLoaderData();
-  console.log(task);
+  const { fetchExpiredtasks ,fetchTotaltasks} = useTasks();
 
   return (
     <section className="w-full h-screen flex justify-center items-center">
@@ -84,6 +86,7 @@ const EditTask = () => {
                 Priority
               </label>
               <select
+                defaultValue={task.priority}
                 name="priority"
                 className="my-1 block py-3 px-1 text-slate-700 font-semibold text-sm  border-2 w-full rounded-md border-slate-400 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm"
               >
@@ -97,6 +100,7 @@ const EditTask = () => {
                 Status
               </label>
               <select
+                defaultValue={task.status}
                 name="status"
                 className="my-1 block py-3 px-1 text-slate-700 font-semibold text-sm  border-2 w-full rounded-md border-slate-400 shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm"
               >
@@ -109,6 +113,10 @@ const EditTask = () => {
 
           <div>
             <button
+              onClick={() => {
+                fetchTotaltasks();
+                fetchExpiredtasks();
+              }}
               type="submit"
               className="inline-flex justify-center py-3 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-slate-700 hover:bg-slate-900 "
             >

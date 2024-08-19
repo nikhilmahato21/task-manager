@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTasks } from "../utils/taskContext";
 import { CiFilter } from "react-icons/ci";
+import { FiFilter } from "react-icons/fi";
 
 const Header: React.FC = () => {
   const { fetchTasks } = useTasks();
@@ -43,9 +44,11 @@ const Header: React.FC = () => {
           }}
         >
           <option className="text-gray-600" value="">
-            <span>
-              <CiFilter size={24} /> All
-            </span>
+           
+          <FiFilter size={20} className="inline-block mr-2" />  Filter
+          </option>
+          <option className="text-gray-600" value="">
+            All
           </option>
           <option className="text-gray-600" value="todo">
             To Do

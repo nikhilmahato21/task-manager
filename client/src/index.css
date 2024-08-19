@@ -10,3 +10,9 @@ body{
   font-weight: 100;
   font-style: normal;
 }
+.select-with-icon {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgY2xhc3M9InN2Zy1pY29uIj4KPHBhdGggZD0iTTAgMGgyNHYyaC0yNFYweiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTcuNjEgNy41N0wxdjJoMmwxNiAxNiAxLjQxLTEuNDFMMTcuNjEgNy41N3pNMTMuMTkgM3YyaDUuMTlsMiAySDQvMSA0aDQuMTlMMTMuMTkgM3oiIGZpbGw9IiMwMDAiLz4KPC9zdmc+Cg==') no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+  }

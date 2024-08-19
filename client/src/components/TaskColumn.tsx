@@ -1,5 +1,6 @@
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import { HiDotsVertical } from "react-icons/hi";
+import { useTasks } from "../utils/taskContext";
 
 type TaskColumnProps = {
   title: string;
@@ -21,8 +22,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
   color,
   borderColor,
 }) => {
-  const navigate = useNavigate();
-
+  const { fetchTasks, fetchTotaltasks,fetchExpiredtasks } = useTasks();
   return (
     <div
       className={`${
@@ -35,7 +35,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
         <span
           className={`h-2 w-2 p-1 mb-3 rounded-full inline-block  ${color}`}
         ></span>
-        <span className={`text-xl font-bold mb-4 `}>{title}</span>
+        <span className={`text-xl font-bold mb-4 capitalize `}>{title}</span>
         <span className="bg-gray-100 flex justify-center items-center font-semibold  h-6 w-6 mb-3  rounded-full text-gray-500">
           {tasks.length}
         </span>
@@ -44,10 +44,8 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
       <div className="space-y-6">
         {tasks.map((task) => (
           <div
-          data-tip="hello"
-            onClick={() => navigate(`task-details/${task._id}`)}
             key={task._id}
-            className="p-4  bg-white shadow rounded-md hover:border hover:border-black"
+            className="p-4  bg-white shadow rounded-md hover:border hover:border-black hover:shadow-lg"
           >
             <div className="flex justify-between">
               <span
@@ -71,7 +69,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
                   ? "completed"
                   : task.priority}
               </span>
-              <div className="dropdown dropdown-bottom dropdown-end">
+              <div className="dropdown  dropdown-hover dropdown-bottom dropdown-end">
                 <div tabIndex={0} role="button" className=" m-1">
                   <HiDotsVertical />
                 </div>
@@ -79,20 +77,44 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
                   tabIndex={0}
                   className="dropdown-content text-slate-700 menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg"
                 >
-                  <li className="text-slate-900 font-normal">
-                    <Link to={`/task/${task._id}`}>edit</Link>
-                  </li>
-                  <li className="text-slate-900 font-normal">
-                    <a>
-                      <Form method="post" action={`../delete-job/${task._id}`}>
-                        <button>delete</button>
-                      </Form>
-                    </a>
-                  </li>
+                  <Link
+                    to={`/task-details/${task._id}`}
+                    className="p-2 hover:bg-gray-100 hover:rounded-lg "
+                  >
+                    <li className="text-slate-900 font-normal">view task</li>{" "}
+                  </Link>
+                  <Link
+                    to={`/task/${task._id}`}
+                    className="p-2 hover:bg-gray-100 hover:rounded-lg "
+                  >
+                    <li className="text-slate-900 font-normal">edit</li>
+                  </Link>
+                  <Form method="post" action={`../delete-task/${task._id}`}>
+                    <li
+                      onClick={() => {
+                        fetchTasks();
+                        fetchTotaltasks();
+                      }}
+                      className="text-slate-900 font-normal"
+                    >
+                      <button
+                        onClick={() => {
+                          fetchTasks();
+                          fetchTotaltasks();
+                          fetchExpiredtasks()
+                        }}
+                        className="p-2"
+                      >
+                        delete
+                      </button>
+                    </li>
+                  </Form>
                 </ul>
               </div>
             </div>
-            <h3 className="text-lg font-semibold mt-2">{task.title}</h3>
+            <h3 className="text-lg font-semibold mt-2 capitalize">
+              {task.title}
+            </h3>
             <p className="text-gray-700 text-sm font-semibold mt-2 pb-5">
               {task.description}
             </p>

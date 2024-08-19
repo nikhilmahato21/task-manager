@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     action: updateAction,
   },
   {
-    path: "delete-job/:id",
+    path: "delete-task/:id",
   
     action: deleteAction,
   },
