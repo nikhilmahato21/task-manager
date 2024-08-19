@@ -2,8 +2,12 @@ import express, { Request, Response } from "express"
 import mongoose from "mongoose";
 import morgan from "morgan";
 import taskRoutes from "./routes/taskRoutes";
+import cors from "cors";
+
+
 const app = express();
 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 

@@ -1,14 +1,14 @@
 import axios from "axios";
 
 import { ActionFunctionArgs, Form,  redirect } from "react-router-dom";
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   console.log(data);
 
   try {
-    await axios.post("/tasks", data);
+    await axios.post(`${apiUrl}`, data);
     
     const modal = document.getElementById(
       "my_modal_3"
