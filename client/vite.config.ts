@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/tasks': {
-        target: 'http://localhost:3000', // Replace with your backend server URL
+        target: 'https://task-manager-0h1b.onrender.com', // Replace with your backend server URL
         changeOrigin: true,  // Needed for virtual hosted sites
         rewrite: (path) => path.replace(/^\/tasks/, '/tasks'),  // Rewrite the path if needed
       },
