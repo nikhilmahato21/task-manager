@@ -5,6 +5,7 @@ import LeftSideBar from "../components/LeftSideBar";
 import TaskModal from "../components/TaskModal";
 import { useTasks } from "../utils/taskContext";
 import { useState } from "react";
+import { RiMenuFold4Line } from "react-icons/ri";
 
 const HomeLayout = () => {
   const { fetchTasks, fetchTotaltasks, fetchExpiredtasks } = useTasks();
@@ -13,9 +14,9 @@ const HomeLayout = () => {
     <div className="flex flex-col h-screen">
       <button
         onClick={() => setIsOpen(!isopen)}
-        className="  bg-gray-900  md:hidden w-12 h-10 absolute top-11"
+        className=" z-40  bg-gray-300  rounded-e-lg p-1 opacity-70  md:hidden w-12 h-10 absolute  top-16"
       >
-        toggle
+        <RiMenuFold4Line size={30}/>
       </button>
       {/* Top Section for Search */}
       <Header />

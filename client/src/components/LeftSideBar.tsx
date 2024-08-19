@@ -6,7 +6,7 @@ const LeftSideBar = ({ isOpen }: LeftSideBarProps) => {
   const { totalTasks, expiredTasks } = useTasks();
 
   return (
-    <div className={`h-full  bg-gray-100 p-6 ${isOpen ? " h-screen absolute z-30" : "hidden "}`}>
+    <div className={`h-full  bg-gray-100 p-6 ${isOpen ? " h-screen absolute md:relative z-30" : "hidden "}`}>
       {/* toggle Sidebar */}
 
       {/* main content */}

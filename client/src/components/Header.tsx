@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     handleSearch();
   }, [search]);
   return (
-    <header className=" p-4 text-white bg-gray-100 m-4 shadow-lg rounded-lg flex items-center justify-between">
+    <header className=" p-4 text-white md:m-4 bg-gray-100  shadow-lg rounded-lg flex items-center justify-between">
       <div className="w-full   ">
         <input
           type="text"
