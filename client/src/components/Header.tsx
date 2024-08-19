@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     handleSearch();
   }, [search]);
   return (
-    <header className=" p-4 text-white bg-gray-100 m-4 shadow-lg rounded-lg flex justify-between">
+    <header className=" p-4 text-white bg-gray-100 m-4 shadow-lg rounded-lg flex items-center justify-between">
       <div className="w-full   ">
         <input
           type="text"
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           onChange={(e) => {
             setSearch(e.target.value);
           }}
-          className="w-96 shadow-md p-2 py-4 rounded-full text-slate-700 font-semibold text-sm"
+          className="w-44 md:w-96 shadow-md p-2 py-4 rounded-full text-slate-700 font-semibold text-sm"
         />
       </div>
       <div>

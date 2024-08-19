@@ -4,18 +4,26 @@ import LeftSideBar from "../components/LeftSideBar";
 
 import TaskModal from "../components/TaskModal";
 import { useTasks } from "../utils/taskContext";
+import { useState } from "react";
 
 const HomeLayout = () => {
   const { fetchTasks, fetchTotaltasks, fetchExpiredtasks } = useTasks();
-
+  const [isopen, setIsOpen] = useState(true);
   return (
     <div className="flex flex-col h-screen">
+      <button
+        onClick={() => setIsOpen(!isopen)}
+        className="  bg-gray-900  md:hidden w-12 h-10 absolute top-11"
+      >
+        toggle
+      </button>
       {/* Top Section for Search */}
       <Header />
 
       {/* Main Content */}
       <div className="flex flex-1">
-        <LeftSideBar />
+        <LeftSideBar isOpen={isopen} />
+
         {/* Right Section */}
         <Outlet />
         <TaskModal />

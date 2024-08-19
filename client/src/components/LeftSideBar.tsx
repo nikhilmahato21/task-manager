@@ -1,12 +1,17 @@
 import { useTasks } from "../utils/taskContext";
-
-const LeftSideBar = () => {
-  const { totalTasks,expiredTasks } = useTasks();
+type LeftSideBarProps = {
+  isOpen: boolean;
+};
+const LeftSideBar = ({ isOpen }: LeftSideBarProps) => {
+  const { totalTasks, expiredTasks } = useTasks();
 
   return (
-    <div className="h-full bg-gray-100 p-6">
+    <div className={`h-full  bg-gray-100 p-6 ${isOpen ? " h-screen absolute z-30" : "hidden "}`}>
+      {/* toggle Sidebar */}
+
+      {/* main content */}
       <button
-        className=" bg-slate-800 text-white rounded-full w-60 p-3 m-1"
+        className=" bg-slate-800  text-white rounded-full w-60 p-3 m-1"
         onClick={() => {
           const modal = document.getElementById(
             "my_modal_3"
@@ -20,7 +25,6 @@ const LeftSideBar = () => {
       >
         + Add Task
       </button>
-      {/* Left Sidebar */}
 
       <aside className="w-64 h-full bg-gray-100 p-4 ">
         <ul>
@@ -65,7 +69,9 @@ const LeftSideBar = () => {
               <span className="text-gray-600  font-semibold">Completed</span>
               <span className="font-bold text-2xl">
                 {totalTasks.filter((task) => task.status === "done").length}/
-                <span className="text-xl font-semibold">{totalTasks.length}</span>
+                <span className="text-xl font-semibold">
+                  {totalTasks.length}
+                </span>
               </span>
             </div>
           </li>
