@@ -10,7 +10,7 @@ interface Task {
   priority: "low" | "medium" | "high";
   deadline: Date;
 }
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 // Define the shape of the context
 interface TaskContextProps {
   tasks: Task[];
@@ -38,7 +38,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
       if (status) query.append("status", status);
       if (search) query.append("search", search);
 
-      const response = await axios.get(`/tasks?${query.toString()}`);
+      const response = await axios.get(`${apiUrl}?${query.toString()}`);
       setTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -51,7 +51,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
       if (status) query.append("status", status);
       if (search) query.append("search", search);
 
-      const response = await axios.get(`/tasks?${query.toString()}`);
+      const response = await axios.get(`${apiUrl}?${query.toString()}`);
       setTotaltasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -63,7 +63,7 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
       if (status) query.append("status", status);
       if (search) query.append("search", search);
 
-      const response = await axios.get(`/tasks?status=expired`);
+      const response = await axios.get(`${apiUrl}?status=expired`);
       console.log(response.data);
 
       setExpiredtasks(response.data);
