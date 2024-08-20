@@ -28,7 +28,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const data = Object.fromEntries(formData);
 
   try {
-    await axios.put(`/tasks/${params.id}`, data);
+    await axios.put(`${apiUrl}/${params.id}`, data);
     toast.success("Task Updated! ");
     return redirect("/");
   } catch (error) {
